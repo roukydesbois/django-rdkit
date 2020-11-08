@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 from django.test import TestCase
 
 from django_rdkit.models import *
@@ -203,6 +201,7 @@ class MolFieldTest(TestCase):
                 MOL_INCHI,
                 MOL_INCHIKEY,
                 MOL_FORMULA,
+                MOL_TO_SVG,
         ):
             _ = list(MoleculeModel.objects.annotate(result=func('molecule')))
 

@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 import sys
 
 from django.db import models
@@ -40,6 +38,7 @@ for function, fieldkls in [('mol', MolField),
                            ('mol_inchi', models.TextField),
                            ('mol_inchikey', models.TextField),
                            ('mol_formula', models.TextField),
+                           ('mol_to_svg', models.TextField),
                        ]:
     _F = type(str(function.upper()), (_Func,),
              { 'function': function, 'default_output_field': fieldkls(),})
@@ -76,7 +75,7 @@ for constructor in ['mol_from_smiles', 'mol_from_smarts', 'mol_from_ctab',
                 'default_output_field': MolField(),})
     setattr(module, _F.__name__, _F)
     __all__.append(_F.__name__)
-    
+
 
 class ValidatorFunc(_Func):
     template = '%(function)s(cstring(%(expressions)s))'
@@ -151,7 +150,7 @@ class DistanceExpression(Expression):
     def set_source_expressions(self, exprs):
         self.lhs, self.rhs = exprs
 
-    def resolve_expression(self, query=None, 
+    def resolve_expression(self, query=None,
                            allow_joins=True, reuse=None, summarize=False):
         c = self.copy()
         c.is_summary = summarize
@@ -190,4 +189,3 @@ class FMCS(models.Aggregate):
 
 
 __all__.append('FMCS')
-
