@@ -1,4 +1,5 @@
 {% load static %}
 <script src="{% static 'django_rdkit/js/ketcher_to_django.js' %}"></script>
-{% include "django/forms/widgets/textarea.html" %}
+<textarea id="taKetcher" name="{{ widget.name }}" hidden=true {% include "django/forms/widgets/attrs.html" %}>
+    {% if widget.value %}{{ widget.value }}{% endif %}</textarea>
 <iframe id="ifKetcher" src="{% static 'django_rdkit/ketcher/standalone/index.html' %}" width="800" height="600"></iframe>

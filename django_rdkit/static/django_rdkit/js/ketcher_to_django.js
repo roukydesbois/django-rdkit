@@ -1,9 +1,15 @@
 var ketcherFrame = document.getElementById('ifKetcher');
 var ketcher = null;
 
-if ('contentDocument' in ketcherFrame)
+if ('contentDocument' in ketcherFrame) {
     ketcher = ketcherFrame.contentWindow.ketcher;
-else // IE7
+    ketcherFrame.contentWindow.document.onclick = function() {
+        document.getElementById("taKetcher").value = ketcher.getMolfile()
+    };
+}
+else { // IE7
     ketcher = document.frames['ifKetcher'].window.ketcher;
-
-function get_
+    document.frames['ifKetcher'].window.document.onclick = function() {
+        document.getElementById("taKetcher").value = ketcher.getMolfile()
+    };
+}
