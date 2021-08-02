@@ -9,6 +9,8 @@ from rdkit.Chem import AllChem as Chem
 from rdkit import DataStructs
 from rdkit.DataStructs import ExplicitBitVect
 
+from django_rdkit.forms.widgets import MoleculeEditor
+
 
 __all__ = ["MolField", "RxnField", "BfpField", "SfpField",]
 
@@ -85,7 +87,7 @@ class MolField(Field):
 
     def formfield(self, **kwargs):
         # Use TextField as default input form to accommodate line breaks needed for molBlocks
-        defaults = {'form_class': forms.CharField, 'strip': False, 'widget':forms.Textarea}
+        defaults = {'form_class': forms.CharField, 'strip': False, 'widget': MoleculeEditor}
         defaults.update(kwargs)
         return super().formfield(**defaults)
 
