@@ -9,8 +9,6 @@ from rdkit.Chem import AllChem as Chem
 from rdkit import DataStructs
 from rdkit.DataStructs import ExplicitBitVect
 
-from django_rdkit import forms
-from django_rdkit.forms import widgets
 from django_rdkit.forms.widgets import MoleculeEditor
 
 
